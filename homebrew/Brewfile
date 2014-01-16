@@ -1,0 +1,55 @@
+#
+# Update Homebrew
+#
+update
+
+#
+# Install Homebrew Cask
+#
+tap 'phinze/cask'
+install brew-cask
+
+#
+# Install Formulas
+#
+install git
+install hub
+install bash-completion
+install vim
+install ruby-build
+install rbenv
+install python
+install node
+install wget
+install sqlite
+install redis
+install tree
+install jq
+install icu4c
+
+# Team
+#install heroku-toolbelt
+#install phantomjs
+#install sqlite
+
+#
+# Install Casks
+#
+cask install iterm2
+cask install vagrant
+cask install virtualbox
+cask install bettertouchtool
+cask install cyberduck
+cask install dash
+cask install google-chrome
+cask install hipchat
+cask install dropbox
+cask install kobito
+cask install evernote
+cask install skitch
+# TODO google-japanese-input
+
+# Team
+# cask install dropbox-encore
+# cask install pgadmin3
+# TODO cask install postgres.app
