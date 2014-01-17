@@ -1,7 +1,7 @@
 # Welcome
 Bootstrap Your Mac.
 
-## GET READY
+## HOW TO USE
 
 ```bash
 $ ruby welcome.rb

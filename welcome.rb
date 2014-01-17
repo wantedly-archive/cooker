@@ -49,6 +49,10 @@ puts ""
 
 Dir.chdir ROOT_DIR
 
+#abort "MacOS too old, see: https://github.com/mistydemeo/tigerbrew" if macos_version < "10.5"
+#abort "Don't run this as root!" if Process.uid == 0
+#abort <<-EOABORT unless `groups`.split.include? "admin"
+
 #
 # Check for XCode
 #
@@ -119,7 +123,7 @@ end
 #
 # Check for Bundler
 #
-unless File.executable?("#{ENV['HOME']}/.rbenv/shims/bundle")
+if File.executable?("#{ENV['HOME']}/.rbenv/shims/bundle")
   success "Bundler found."
 else
   warn "You need to install Bundler."
