@@ -4,6 +4,8 @@
 #
 # Bootstrap Your Mac
 
+ROOT_DIR = File.expand_path(File.dirname(__FILE__))
+
 module Tty extend self
   def green; bold 32; end
   def yellow; bold 33; end
@@ -37,7 +39,9 @@ def fail(string)
   puts "  #{Tty.red}x#{Tty.reset} #{string}"
 end
 
-ROOT_DIR = File.expand_path(File.dirname(__FILE__))
+def macos_version
+  @macos_version ||= `/usr/bin/sw_vers -productVersion`.chomp[/10\.\d+/]
+end
 
 #
 # Welcome to Welcome
@@ -49,9 +53,32 @@ puts ""
 
 Dir.chdir ROOT_DIR
 
-#abort "MacOS too old, see: https://github.com/mistydemeo/tigerbrew" if macos_version < "10.5"
-#abort "Don't run this as root!" if Process.uid == 0
-#abort <<-EOABORT unless `groups`.split.include? "admin"
+#
+# Check for Max OS X Version.
+#
+unless macos_version.to_f >= 10.8
+  fail "You must be on Mountain Lion or greater!"
+  puts ""
+  exit 1
+end
+
+#
+# Check for Running User.
+#
+if Process.uid == 0
+  fail "Don't run this as root!"
+  puts ""
+  exit 1
+end
+
+#
+# Check for Running User Group.
+#
+unless `groups`.split.include? "admin"
+  fail "This script requires the user #{ENV['USER']} to be an Administrator."
+  puts ""
+  exit 1
+end
 
 #
 # Check for XCode
