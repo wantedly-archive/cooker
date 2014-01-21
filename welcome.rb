@@ -147,7 +147,38 @@ end
 #
 # Install Ruby
 #
-# TODO
+ruby_version = "2.0.0"
+
+if File.exists?("#{ROOT_DIR}/ruby/version")
+  ruby_version = File.readlines("#{ROOT_DIR}/ruby/version").first.chomp
+end
+
+if File.executable?('/usr/local/bin/rbenv') && File.executable?('/usr/local/bin/rbenv') 
+  success "Rbenv and ruby-build found."
+else
+  fail "You need to install rbenv and ruby-build."
+  puts "  Add rbenv and ruby-build to your Brewfile."
+  puts ""
+  exit 1
+end
+
+if File.exists?("#{ENV['HOME']}/.rbenv/versions/#{ruby_version}")
+  success "Ruby #{ruby_version} found."
+else
+  warn "You need to install Ruby #{ruby_version}."
+  ask "Can I install Ruby #{ruby_version}? [y]es, [n]o?:"
+  answer = STDIN.gets.chomp
+
+  if answer == "y"
+    success "Installing ruby #{ruby_version}..."
+    separator "brew command's output"
+    system("rbenv install #{ruby_version}")
+    exit 1 if $? != 0
+    puts ""
+  else
+    exit
+  end
+end
 
 #
 # Check for Bundler
