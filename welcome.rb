@@ -122,6 +122,7 @@ else
     success "Installing Homebrew..."
     separator "install script's output"
     system('ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"')
+    exit 1 if $? != 0
     puts ""
   else
     puts ""
@@ -137,6 +138,7 @@ if File.exists?('homebrew/Brewfile')
   separator "brew command's output"
   Dir.chdir "#{ROOT_DIR}/homebrew"
   system("brew bundle")
+  exit 1 if $? != 0
   puts ""
 
   Dir.chdir ROOT_DIR
@@ -161,6 +163,7 @@ else
     success "Installing bundler..."
     separator "gem command's output"
     system("#{ENV['HOME']}/.rbenv/shims/gem install bundler --no-ri --no-rdoc")
+    exit 1 if $? != 0
     puts ""
   else
     exit
@@ -175,6 +178,7 @@ if File.exists?('ruby/Gemfile') || File.exists?('ruby/Gemfile.lock')
   separator "bundle command's output"
   Dir.chdir "#{ROOT_DIR}/ruby"
   system("#{ENV['HOME']}/.rbenv/shims/bundle install")
+  exit 1 if $? != 0
   puts ""
 
   Dir.chdir ROOT_DIR
