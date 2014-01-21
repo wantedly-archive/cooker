@@ -53,3 +53,5 @@ cask install skitch
 # cask install dropbox-encore
 # cask install pgadmin3
 # TODO cask install postgres.app
+
+cleanup
