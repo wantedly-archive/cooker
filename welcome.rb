@@ -83,6 +83,7 @@ end
 #
 # Check for XCode
 #
+# NOTE (spesnova): 10.9 は xcode-select --install でインストール可能
 if File.exists?('/usr/bin/xcodebuild') && File.exists?('/Applications/Xcode.app')
   success "Xcode 5 found." if /^Xcode 5/.match(`/usr/bin/xcodebuild -version`)
 else
