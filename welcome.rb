@@ -97,9 +97,8 @@ end
 #
 # Check for Xcode Command Line Tools
 #
-# TODO(spesnova):
-#   Maybe using `pkgutil --pkg-info=com.apple.pkg.DeveloperToolsCLI` is better to check.
-if File.exists?('/var/db/receipts/com.apple.pkg.DeveloperToolsCLI.plist')
+system("pkgutil --pkg-info=com.apple.pkg.CLTools_Executables > /dev/null 2>&1")
+if $? == 0
   success "Xcode Command Line Tools found."
 else
   fail "You need to install Xcode Command Line Tools. You can find and download it:"
