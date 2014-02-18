@@ -4,12 +4,6 @@ Bootstrap Your Mac.
 ## HOW TO USE
 
 ```bash
-$ ruby welcome.rb
-```
-
-## CONTRIBUTION
-
-```bash
 $ git clone https://github.com/wantedly/welcome.git && cd welcome
-$ script/bootstrap
+$ ruby welcome.rb
 ```
