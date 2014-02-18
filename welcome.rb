@@ -101,10 +101,18 @@ system("pkgutil --pkg-info=com.apple.pkg.CLTools_Executables > /dev/null 2>&1")
 if $? == 0
   success "Xcode Command Line Tools found."
 else
-  fail "You need to install Xcode Command Line Tools. You can find and download it:"
-  puts "    from: #{Tty.underline 39} https://developer.apple.com/downloads/index.action#{Tty.reset}"
-  puts "    Type 'command' in search box and download latest one."
-  system "open", "https://developer.apple.com/downloads/index.action"
+  warn "You need to install Xcode Command Line Tools."
+  ask "Can I install Homebrew? [y]es, [n]o?:"
+  answer = STDIN.gets.chomp
+  if answer == "y"
+    success "Installing xcode-select..."
+    separator "install script's output"
+    system("xcode-select --install")
+    exit 1 if $? != 0
+    puts ""
+  else
+    puts ""
+  end
   exit
 end
 
