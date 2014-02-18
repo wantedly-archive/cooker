@@ -189,6 +189,47 @@ else
 end
 
 #
+# Rbenv setting
+#
+unless File.exists?("#{ENV['HOME']}/.bash_profile")
+  warn "You need to set path somewhere for rbenv."
+  ask "Can I create #{ENV['HOME']}/.bash_profile? [y]es, [n]o?:"
+  answer = STDIN.gets.chomp
+  if answer == "y"
+    success "Creating #{ENV['HOME']}/.bash_profile..."
+    system("touch #{ENV['HOME']}/.bash_profile")
+    exit 1 if $? != 0
+  else
+    puts ""
+    exit
+  end
+end
+
+if File.exists?("#{ENV['HOME']}/.bash_profile")
+  if system("grep rbenv #{ENV['HOME']}/.bash_profile >/dev/null 2>&1")
+    success "Rbenv setting found."
+  else
+    warn "You need to set path for rbenv."
+    ask "Can I write the setting to #{ENV['HOME']}/.bash_profile? [y]es, [n]o?:"
+    answer = STDIN.gets.chomp
+    if answer == "y"
+      File.open("#{ENV['HOME']}/.bash_profile",'a') do |file|
+        success "Writing the setting to #{ENV['HOME']}/.bash_profile..."
+        file.puts 'eval "$(rbenv init -)"'
+        system('eval "$(rbenv init -)"')
+        file.puts 'export PATH="$HOME/.rbenv/shims:$PATH"'
+        system('export PATH="$HOME/.rbenv/shims:$PATH"')
+      end
+      system("rbenv global #{ruby_version}")
+      exit 1 if $? != 0
+    else
+      puts ""
+      exit
+    end
+  end
+end
+
+#
 # Check for Bundler
 #
 if File.executable?("#{ENV['HOME']}/.rbenv/shims/bundle")
