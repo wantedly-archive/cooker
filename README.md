@@ -4,6 +4,6 @@ Bootstrap Your Mac.
 ## HOW TO USE
 
 ```bash
-$ git clone https://github.com/wantedly/welcome.git && cd welcome
+$ git clone https://github.com/spesnova/welcome.git && cd welcome
 $ ruby welcome.rb
 ```
