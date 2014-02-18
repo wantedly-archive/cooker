@@ -45,7 +45,7 @@ end
 
 #
 # Welcome to Welcome
-# 
+#
 puts ""
 puts "  Welcome"
 puts "    Bootstrap Your Mac."
@@ -153,7 +153,7 @@ if File.exists?("#{ROOT_DIR}/ruby/version")
   ruby_version = File.readlines("#{ROOT_DIR}/ruby/version").first.chomp
 end
 
-if File.executable?('/usr/local/bin/rbenv') && File.executable?('/usr/local/bin/rbenv') 
+if File.executable?('/usr/local/bin/rbenv') && File.executable?('/usr/local/bin/rbenv')
   success "Rbenv and ruby-build found."
 else
   fail "You need to install rbenv and ruby-build."
@@ -208,7 +208,7 @@ if File.exists?('ruby/Gemfile') || File.exists?('ruby/Gemfile.lock')
   success "Installing your rubies..."
   separator "bundle command's output"
   Dir.chdir "#{ROOT_DIR}/ruby"
-  system("#{ENV['HOME']}/.rbenv/shims/bundle install")
+  system("#{ENV['HOME']}/.rbenv/shims/bundle install --jobs=4")
   exit 1 if $? != 0
   puts ""
 
