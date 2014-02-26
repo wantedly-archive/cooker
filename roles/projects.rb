@@ -34,4 +34,21 @@ override_attributes({
       "dropbox-encore"
     ]
   }
+  "rbenv"    => {
+    "user_installs" => [
+      {
+        "user"   => ENV['HOME'].sub("\/Users\/", ""),
+        "rubies" => ["2.1.1"],
+        "global" => "2.1.1",
+        "gems"   => {
+          "2.1.1" => [
+            { "name" => "bundler" },
+            { "name" => "rails" },
+            { "name" => "chef" },
+            { "name" => "berkshelf" },
+          ]
+        }
+      }
+    ]
+  }
 })
