@@ -164,6 +164,8 @@ if File.executable?('/opt/chef/embedded/bin/berks') && File.exists?("#{ROOT_DIR}
   success "Installing chef cookbooks..."
   separator "install output"
   system("/opt/chef/embedded/bin/berks install --path #{ROOT_DIR}/chef/cookbooks")
+  exit 1 if $? != 0
+  puts ""
 
   Dir.chdir "#{ROOT_DIR}"
 end
@@ -171,7 +173,13 @@ end
 #
 # Run Chef
 #
-#system("sudo /usr/bin/chef-solo -c #{ROOT_DIR}/chef/solo.rb")
+Dir.chdir "#{ROOT_DIR}/chef"
+success "Running chef..."
+separator "chef's output"
+system("sudo /usr/bin/chef-solo -c #{ROOT_DIR}/chef/solo.rb")
+exit 1 if $? != 0
+puts ""
+Dir.chdir "#{ROOT_DIR}"
 
 #
 # Startup Instructions
