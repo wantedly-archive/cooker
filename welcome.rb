@@ -83,7 +83,6 @@ end
 #
 # Check for XCode
 #
-# NOTE (spesnova): 10.9 は xcode-select --install でインストール可能
 if File.exists?('/usr/bin/xcodebuild') && File.exists?('/Applications/Xcode.app')
   success "Xcode 5 found." if /^Xcode 5/.match(`/usr/bin/xcodebuild -version`)
 else
@@ -102,7 +101,7 @@ if $? == 0
   success "Xcode Command Line Tools found."
 else
   warn "You need to install Xcode Command Line Tools."
-  ask "Can I install Homebrew? [y]es, [n]o?:"
+  ask  "Can I install Xcode Command Line Tools? [y]es, [n]o?:"
   answer = STDIN.gets.chomp
   if answer == "y"
     success "Installing xcode-select..."
@@ -112,24 +111,26 @@ else
     puts ""
   else
     puts ""
+    exit
   end
-  exit
 end
 
 #
-# Check for Homebrew
+# Check for Chef
 #
-if File.exists?('/usr/local/bin/brew') && File.executable?('/usr/local/bin/brew')
-  success "Homebrew found."
+if File.exists?('/opt/chef') && File.executable?('/opt/chef/bin/chef-client')
+  success "Chef found."
 else
-  warn "You need to install Homebrew."
-  ask "Can I install Homebrew? [y]es, [n]o?:"
+  warn "You need to install Chef."
+  ask  "Can I install Chef? [y]es, [n]o?:"
   answer = STDIN.gets.chomp
-
   if answer == "y"
-    success "Installing Homebrew..."
+    success "Installing Chef..."
     separator "install script's output"
-    system('ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"')
+    # TODO (spesnova):
+    #   Use '#curl -L https://www.opscode.com/chef/install.sh | sudo bash'
+    #   if original script supports os x 10.9
+    system("curl -L https://gist.github.com/ringohub/7660676/raw/bc25c3274d55a799f11e4aa012bf3e809a7cf285/install.sh | sudo bash")
     exit 1 if $? != 0
     puts ""
   else
@@ -139,135 +140,34 @@ else
 end
 
 #
-# Install Homebrew Formula and Casks
+# Check for Berkshelf
 #
-if File.exists?('homebrew/Brewfile')
-  success "Installing your formulas and casks..."
-  separator "brew command's output"
-  Dir.chdir "#{ROOT_DIR}/homebrew"
-  system("brew bundle")
-  exit 1 if $? != 0
-  puts ""
-
-  Dir.chdir ROOT_DIR
-end
-
-#
-# Install Ruby
-#
-ruby_version = "2.0.0"
-
-if File.exists?("#{ROOT_DIR}/ruby/version")
-  ruby_version = File.readlines("#{ROOT_DIR}/ruby/version").first.chomp
-end
-
-if File.executable?('/usr/local/bin/rbenv') && File.executable?('/usr/local/bin/rbenv')
-  success "Rbenv and ruby-build found."
+if File.executable?('/opt/chef/embedded/bin/berks')
+  success "Berkshelf found."
 else
-  fail "You need to install rbenv and ruby-build."
-  puts "  Add rbenv and ruby-build to your Brewfile."
-  puts ""
-  exit 1
-end
-
-if File.exists?("#{ENV['HOME']}/.rbenv/versions/#{ruby_version}")
-  success "Ruby #{ruby_version} found."
-else
-  warn "You need to install Ruby #{ruby_version}."
-  ask "Can I install Ruby #{ruby_version}? [y]es, [n]o?:"
-  answer = STDIN.gets.chomp
-
-  if answer == "y"
-    success "Installing ruby #{ruby_version}..."
-    separator "brew command's output"
-    system("rbenv install #{ruby_version}")
-    exit 1 if $? != 0
-    puts ""
-  else
-    exit
-  end
+  warn "You need to install Berkshelf."
+  success "Installing berkshelf..."
+  separator "install output"
+  system("sudo /opt/chef/embedded/bin/gem install berkshelf --no-ri --no-rdoc")
 end
 
 #
-# Rbenv setting
+# Run Berkshelf
 #
-unless File.exists?("#{ENV['HOME']}/.bash_profile")
-  warn "You need to set path somewhere for rbenv."
-  ask "Can I create #{ENV['HOME']}/.bash_profile? [y]es, [n]o?:"
-  answer = STDIN.gets.chomp
-  if answer == "y"
-    success "Creating #{ENV['HOME']}/.bash_profile..."
-    system("touch #{ENV['HOME']}/.bash_profile")
-    exit 1 if $? != 0
-  else
-    puts ""
-    exit
-  end
-end
+if File.executable?('/opt/chef/embedded/bin/berks') && File.exists?("#{ROOT_DIR}/chef/Berksfile")
+  Dir.chdir "#{ROOT_DIR}/chef"
 
-if File.exists?("#{ENV['HOME']}/.bash_profile")
-  if system("grep rbenv #{ENV['HOME']}/.bash_profile >/dev/null 2>&1")
-    success "Rbenv setting found."
-  else
-    warn "You need to set path for rbenv."
-    ask "Can I write the setting to #{ENV['HOME']}/.bash_profile? [y]es, [n]o?:"
-    answer = STDIN.gets.chomp
-    if answer == "y"
-      File.open("#{ENV['HOME']}/.bash_profile",'a') do |file|
-        success "Writing the setting to #{ENV['HOME']}/.bash_profile..."
-        file.puts 'eval "$(rbenv init -)"'
-        system('eval "$(rbenv init -)"')
-        file.puts 'export PATH="$HOME/.rbenv/shims:$PATH"'
-        system('export PATH="$HOME/.rbenv/shims:$PATH"')
-      end
-      system("rbenv global #{ruby_version}")
-      exit 1 if $? != 0
-    else
-      puts ""
-      exit
-    end
-  end
+  success "Installing chef cookbooks..."
+  separator "install output"
+  system("/opt/chef/embedded/bin/berks install --path #{ROOT_DIR}/chef/cookbooks")
+
+  Dir.chdir "#{ROOT_DIR}"
 end
 
 #
-# Check for Bundler
+# Run Chef
 #
-if File.executable?("#{ENV['HOME']}/.rbenv/shims/bundle")
-  success "Bundler found."
-else
-  warn "You need to install Bundler."
-  ask "Can I install Bundler gem? [y]es, [n]o?:"
-  answer = STDIN.gets.chomp
-
-  if answer == "y"
-    success "Installing bundler..."
-    separator "gem command's output"
-    system("#{ENV['HOME']}/.rbenv/shims/gem install bundler --no-ri --no-rdoc")
-    exit 1 if $? != 0
-    puts ""
-  else
-    exit
-  end
-end
-
-#
-# Install Gems
-#
-if File.exists?('ruby/Gemfile') || File.exists?('ruby/Gemfile.lock')
-  success "Installing your rubies..."
-  separator "bundle command's output"
-  Dir.chdir "#{ROOT_DIR}/ruby"
-  system("#{ENV['HOME']}/.rbenv/shims/bundle install --jobs=4")
-  exit 1 if $? != 0
-  puts ""
-
-  Dir.chdir ROOT_DIR
-end
-
-#
-# Check for Some Accounts like hipchat, github
-#
-# TODO
+#system("sudo /usr/bin/chef-solo -c #{ROOT_DIR}/chef/solo.rb")
 
 #
 # Startup Instructions
