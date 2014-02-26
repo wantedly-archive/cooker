@@ -33,7 +33,7 @@ override_attributes({
       "dropbox",
       "dropbox-encore"
     ]
-  }
+  },
   "rbenv"    => {
     "user_installs" => [
       {
