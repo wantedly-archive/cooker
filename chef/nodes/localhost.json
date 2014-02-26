@@ -1,5 +1,7 @@
 {
   "run_list":[
-    "role[default]"
+    "role[default]",
+    "role[projects]",
+    "role[people]"
   ]
 }
