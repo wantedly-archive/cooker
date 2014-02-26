@@ -186,4 +186,4 @@ Dir.chdir "#{ROOT_DIR}"
 # Startup Instructions
 #
 puts ""
-puts "  Good work. Your machine is ready to go!"
+puts "  Good work. Your machine is ready!"
