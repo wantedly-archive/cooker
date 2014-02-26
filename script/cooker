@@ -1,6 +1,6 @@
 #!/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby
 #
-# Cookers
+# Cooker
 #
 # Bootstrap Your Mac
 
@@ -48,10 +48,10 @@ def macos_version
 end
 
 #
-# Welcome to Cookers
+# Welcome to Cooker
 #
 puts ""
-puts "  Cookers"
+puts "  Cooker"
 puts "    Bootstrap Your Mac."
 puts ""
 

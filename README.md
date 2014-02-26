@@ -1,4 +1,4 @@
-# Cookers
+# Cooker
 Bootstrap Your Mac.
 
 ## HOW TO USE
