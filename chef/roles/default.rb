@@ -4,14 +4,9 @@ override_attributes({
   "homebrew" => {
     "formulas" => [
       "git",
-      "hub",
-      "bash-completion",
-      "ruby-build",
-      "rbenv",
-      "wget",
-      "jq",
-      "tree",
-      "icu4c"
+    ],
+    "casks" => [
+      "google-chrome"
     ]
   }
 })

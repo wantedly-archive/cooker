@@ -2,7 +2,7 @@ site :opscode
 
 cookbook "homebrew",
   :git => "https://github.com/wantedly/homebrew-cookbook.git",
-  :ref => "df2c573ab790612b57288ce0eb7433d73f36302e"
+  :ref => "94b3bdff7714308f8235cddbdb7745260305e99c"
 cookbook "ruby_build",
   :git => "https://github.com/fnichol/chef-ruby_build.git"
 cookbook "rbenv",
