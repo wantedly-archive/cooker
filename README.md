@@ -5,10 +5,5 @@ Bootstrap Your Mac.
 
 ```bash
 $ git clone https://github.com/wantedly/welcome.git && cd welcome
-$ ruby welcome.rb
+$ script/welcome
 ```
-
-## TODO
-
-* .bash_profile の読み込みがちゃんとできてない
-* rbenv rehash を最後に実行する
