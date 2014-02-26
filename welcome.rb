@@ -122,7 +122,7 @@ end
 #
 # Check for Chef
 #
-if File.exists?('/opt/chef') && File.executable?('/opt/chef/bin/chef-client')
+if File.exists?('/opt/chef') && File.executable?('/opt/chef/bin/chef-solo')
   success "Chef found."
 else
   warn "You need to install Chef."
