@@ -158,14 +158,14 @@ end
 #
 # Run Berkshelf
 #
-if File.executable?('/opt/chef/embedded/bin/berks') && File.exists?("#{ROOT_DIR}/chef/Berksfile")
-  Dir.chdir "#{ROOT_DIR}/chef"
+if File.executable?('/opt/chef/embedded/bin/berks') && File.exists?("#{ROOT_DIR}/.chef/Berksfile")
+  Dir.chdir "#{ROOT_DIR}/.chef"
 
   success "Installing chef cookbooks..."
   separator "install output"
-  system("/opt/chef/embedded/bin/berks install --path #{ROOT_DIR}/chef/vendor/cookbooks")
+  system("/opt/chef/embedded/bin/berks install --path #{ROOT_DIR}/.chef/vendor/cookbooks")
   system("/opt/chef/embedded/bin/berks update")
-  system("/opt/chef/embedded/bin/berks install --path #{ROOT_DIR}/chef/vendor/cookbooks")
+  system("/opt/chef/embedded/bin/berks install --path #{ROOT_DIR}/.chef/vendor/cookbooks")
   exit 1 if $? != 0
   puts ""
 
@@ -175,10 +175,10 @@ end
 #
 # Run Chef
 #
-Dir.chdir "#{ROOT_DIR}/chef"
+Dir.chdir "#{ROOT_DIR}/.chef"
 success "Running chef..."
 separator "chef's output"
-system("sudo /usr/bin/chef-solo -c #{ROOT_DIR}/chef/solo.rb")
+system("sudo /usr/bin/chef-solo -c #{ROOT_DIR}/.chef/solo.rb")
 exit 1 if $? != 0
 puts ""
 Dir.chdir "#{ROOT_DIR}"
