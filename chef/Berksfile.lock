@@ -15,6 +15,15 @@
       "git": "https://github.com/fnichol/chef-rbenv.git",
       "ref": "9afb4e5da2e6212504a12de3bbbd410cd96100f6"
     },
+    "os_x": {
+      "path": "./cookbooks/os_x"
+    },
+    "projects": {
+      "path": "./cookbooks/projects"
+    },
+    "people": {
+      "path": "./cookbooks/people"
+    },
     "java": {
       "locked_version": "1.19.2"
     }
