@@ -151,7 +151,7 @@ if File.executable?('/opt/chef/embedded/bin/berks')
 else
   warn "You need to install Berkshelf."
   success "Installing berkshelf..."
-  separator "install output"
+  separator "berkshelf's output"
   system("sudo /opt/chef/embedded/bin/gem install berkshelf --no-ri --no-rdoc")
 end
 
