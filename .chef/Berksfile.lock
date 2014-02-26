@@ -3,7 +3,7 @@
     "homebrew": {
       "locked_version": "1.5.5",
       "git": "https://github.com/wantedly/homebrew-cookbook.git",
-      "ref": "94b3bdff7714308f8235cddbdb7745260305e99c"
+      "ref": "7936eed4a549311b830d391736a7c2c3f2e90099"
     },
     "ruby_build": {
       "locked_version": "0.8.1",
