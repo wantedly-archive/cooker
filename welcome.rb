@@ -23,7 +23,11 @@ def success(string)
 end
 
 def separator(string)
-  puts "=======================> #{string}"
+  (1..22).each do |n|
+    print "="
+    sleep(0.01)
+  end
+  print "> #{string}"
   puts ""
 end
 
