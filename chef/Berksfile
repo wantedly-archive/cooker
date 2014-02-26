@@ -10,6 +10,6 @@ cookbook "rbenv",
 cookbook "os_x",
   :path => "cookbooks/os_x"
 cookbook "projects",
-  :path => "cookbooks/projects"
+  :path => "../cookbooks/projects"
 cookbook "people",
-  :path => "cookbooks/people"
+  :path => "../cookbooks/people"

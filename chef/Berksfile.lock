@@ -19,10 +19,10 @@
       "path": "./cookbooks/os_x"
     },
     "projects": {
-      "path": "./cookbooks/projects"
+      "path": "../cookbooks/projects"
     },
     "people": {
-      "path": "./cookbooks/people"
+      "path": "../cookbooks/people"
     },
     "java": {
       "locked_version": "1.19.2"
