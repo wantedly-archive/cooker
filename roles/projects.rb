@@ -11,6 +11,9 @@ override_attributes({
     "git_ref" => "master",
     "upgrade" => "sync"
   },
+  "ruby_build" => {
+    "upgrade" => "sync"
+  },
   "homebrew" => {
     "formulas" => [
       #
