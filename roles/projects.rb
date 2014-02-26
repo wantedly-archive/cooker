@@ -8,7 +8,8 @@ run_list(
 )
 override_attributes({
   "rbenv" => {
-    "git_ref" => "master"
+    "git_ref" => "master",
+    "upgrade" => "sync"
   },
   "homebrew" => {
     "formulas" => [
