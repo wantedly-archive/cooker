@@ -164,6 +164,7 @@ if File.executable?('/opt/chef/embedded/bin/berks') && File.exists?("#{ROOT_DIR}
   success "Installing chef cookbooks..."
   separator "install output"
   system("/opt/chef/embedded/bin/berks install --path #{ROOT_DIR}/chef/cookbooks")
+  system("/opt/chef/embedded/bin/berks update")
   exit 1 if $? != 0
   puts ""
 
