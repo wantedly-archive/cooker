@@ -7,6 +7,9 @@ run_list(
   "recipe[os_x::ruby]"
 )
 override_attributes({
+  "rbenv" => {
+    "git_ref" => "master"
+  },
   "homebrew" => {
     "formulas" => [
       #
