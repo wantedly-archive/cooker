@@ -1,0 +1,17 @@
+{
+  "sources": {
+    "ruby_build": {
+      "locked_version": "0.8.1",
+      "git": "https://github.com/fnichol/chef-ruby_build.git",
+      "ref": "4d3361995a6953076951693eff1b326ab499fe1e"
+    },
+    "rbenv": {
+      "locked_version": "0.7.3",
+      "git": "https://github.com/fnichol/chef-rbenv.git",
+      "ref": "9afb4e5da2e6212504a12de3bbbd410cd96100f6"
+    },
+    "java": {
+      "locked_version": "1.19.2"
+    }
+  }
+}
