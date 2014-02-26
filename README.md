@@ -8,8 +8,8 @@ It was very inspired by github boxen and pivotal sprout.
 Install Xcode, Command Line Tools, Homebrew, Chef...etc.
 
 ```bash
-$ git clone https://github.com/wantedly/cookers.git && cd cookers
-$ script/cookers
+$ git clone https://github.com/wantedly/cooker.git && cd cooker
+$ script/cooker
 ```
 
 ## HOW TO USE
