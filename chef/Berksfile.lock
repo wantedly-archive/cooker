@@ -1,5 +1,10 @@
 {
   "sources": {
+    "homebrew": {
+      "locked_version": "1.5.5",
+      "git": "https://github.com/wantedly/homebrew-cookbook.git",
+      "ref": "44bae89c84b112b2cf61cff1f42aa2d9a3ab1c8c"
+    },
     "ruby_build": {
       "locked_version": "0.8.1",
       "git": "https://github.com/fnichol/chef-ruby_build.git",

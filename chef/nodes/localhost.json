@@ -1,4 +1,5 @@
 {
   "run_list":[
+    "role[default]"
   ]
 }
