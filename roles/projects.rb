@@ -34,12 +34,6 @@ override_attributes({
       "readline"
     ],
     "casks" => [
-      "google-chrome",
-      "hipchat",
-      "skitch",
-      "evernote",
-      "dropbox",
-      "dropbox-encore"
     ]
   },
   "rbenv"    => {
