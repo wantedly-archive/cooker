@@ -17,3 +17,11 @@
 #
 
 include_recipe "rbenv::user"
+
+directory "#{ENV['HOME']}/.rbenv" do
+  mode "0755"
+  owner node["current_user"]
+  group node["current_user"]
+  recursive true
+  action :create
+end
