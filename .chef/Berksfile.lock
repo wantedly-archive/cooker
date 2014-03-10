@@ -13,7 +13,7 @@
     "rbenv": {
       "locked_version": "0.7.3",
       "git": "https://github.com/fnichol/chef-rbenv.git",
-      "ref": "0a3018634bafe58ad21c6ee271af015220e444b9"
+      "ref": "9afb4e5da2e6212504a12de3bbbd410cd96100f6"
     },
     "os_x": {
       "path": "./cookbooks/os_x"
@@ -25,7 +25,7 @@
       "path": "../cookbooks/people"
     },
     "java": {
-      "locked_version": "1.20.0"
+      "locked_version": "1.19.2"
     }
   }
 }
