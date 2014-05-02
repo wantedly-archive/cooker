@@ -161,7 +161,7 @@ end
 #
 # Check for Berkshelf version
 #
-if `berks version`.split('.').first == '3'
+if `/usr/bin/berks version`.split('.').first == '3'
   success "Your Berkshelf version is correct."
 else
   warn "You need to upgrade Berkshelf."
