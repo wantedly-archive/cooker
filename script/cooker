@@ -154,8 +154,20 @@ if File.executable?('/usr/bin/berks')
 else
   warn "You need to install Berkshelf."
   success "Installing berkshelf..."
-  separator "berkshelf's output"
+  separator "gem's output"
   system("sudo #{ARCHFLAGS_OPTION} /usr/bin/gem install berkshelf --no-ri --no-rdoc")
+end
+
+#
+# Check for Berkshelf version
+#
+if `berks version`.split('.').first == '3'
+  success "Your Berkshelf version is correct."
+else
+  warn "You need to upgrade Berkshelf."
+  success "Upgrade berkshelf..."
+  separator "gem's output"
+  system("sudo #{ARCHFLAGS_OPTION} /usr/bin/gem update berkshelf --no-ri --no-rdoc")
 end
 
 #
@@ -166,9 +178,9 @@ if File.executable?('/usr/bin/berks') && File.exists?("#{ROOT_DIR}/.chef/Berksfi
 
   success "Installing chef cookbooks..."
   separator "install output"
-  system("/usr/bin/berks install --path #{ROOT_DIR}/.chef/vendor/cookbooks")
+  system("/usr/bin/berks vendor #{ROOT_DIR}/.chef/vendor/cookbooks")
   system("/usr/bin/berks update")
-  system("/usr/bin/berks install --path #{ROOT_DIR}/.chef/vendor/cookbooks")
+  system("/usr/bin/berks vendor #{ROOT_DIR}/.chef/vendor/cookbooks")
   exit 1 if $? != 0
   puts ""
 
