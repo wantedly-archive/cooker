@@ -12,6 +12,12 @@ $ git clone https://github.com/wantedly/cooker.git && cd cooker
 $ script/cooker
 ```
 
+In case you see errors during installing rbenv 2.1.1, please run the following.
+```brew uninstall readline
+brew install https://raw.githubusercontent.com/Homebrew/homebrew/0181c8a1633353affefabe257c170edbd6d7c008/Library/Formula/readline.rb
+brew pin readline
+```
+
 ## HOW TO USE
 ### Configure Projects Settings
 If your project need to install some homebrew formulas/casks,
