@@ -6,6 +6,8 @@
 
 ROOT_DIR = File.expand_path("..", File.dirname(__FILE__))
 
+require 'fileutils'
+
 module Tty extend self
   def green; bold 32; end
   def yellow; bold 33; end
@@ -131,10 +133,7 @@ else
   if answer == "y"
     success "Installing Chef..."
     separator "install script's output"
-    # TODO (spesnova):
-    #   Use '#curl -L https://www.opscode.com/chef/install.sh | sudo bash'
-    #   if original script supports os x 10.9
-    system("curl -L https://gist.github.com/ringohub/7660676/raw/bc25c3274d55a799f11e4aa012bf3e809a7cf285/install.sh | sudo bash")
+    system("curl -L https://www.opscode.com/chef/install.sh | sudo bash")
     exit 1 if $? != 0
     puts ""
   else
@@ -175,9 +174,16 @@ if File.executable?('/opt/chef/embedded/bin/berks') && File.exists?("#{ROOT_DIR}
 
   success "Installing chef cookbooks..."
   separator "install output"
-  system("/opt/chef/embedded/bin/berks vendor #{ROOT_DIR}/.chef/vendor/cookbooks")
+  # TODO (fbessho):
+  #   berks vendor create a directory but doesn't delete it.
+  #   hence the second run fails with the "directory exists" error.
+  #   need to check if it's fine to run berks vendor only once after update command
+  #    and delete the fiest vendor command.
+  # system("/opt/chef/embedded/bin/berks vendor #{ROOT_DIR}/.chef/vendor/cookbooks")
   system("/opt/chef/embedded/bin/berks update")
-  system("/opt/chef/embedded/bin/berks vendor #{ROOT_DIR}/.chef/vendor/cookbooks")
+  cookbook_dir = "#{ROOT_DIR}/.chef/vendor/cookbooks"
+  FileUtils.rm_rf(cookbook_dir) if cookbook_dir
+  system("/opt/chef/embedded/bin/berks vendor #{cookbook_dir}")
   exit 1 if $? != 0
   puts ""
 
