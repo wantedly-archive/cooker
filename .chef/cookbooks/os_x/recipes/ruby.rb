@@ -17,3 +17,9 @@
 #
 
 include_recipe "rbenv::user"
+
+directory "#{ENV['HOME']}/.rbenv" do
+  owner node["current_user"]
+  group "staff"
+  recursive true
+end
