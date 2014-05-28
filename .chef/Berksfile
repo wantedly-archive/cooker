@@ -1,8 +1,7 @@
 source "http://api.berkshelf.com/"
 
 cookbook "homebrew",
-  :git => "https://github.com/wantedly/homebrew-cookbook.git",
-  :ref => "e5cc3c1fe94fac9e3c241d8b6cafdd6aa29a7c82"
+  :git => "https://github.com/opscode-cookbooks/homebrew.git"
 cookbook "ruby_build",
   :git => "https://github.com/fnichol/chef-ruby_build.git"
 cookbook "rbenv",
