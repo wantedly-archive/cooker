@@ -1,5 +1,5 @@
 # Cookbook Name:: os_x
-# Recipe:: ruby
+# Recipe:: brew_bundle
 #
 # Copyright (C) 2014 Seigo Uchida
 #
@@ -16,4 +16,22 @@
 # limitations under the License.
 #
 
-include_recipe "rbenv::user"
+#
+# Install Formulas
+#
+node["homebrew"]["formulas"].each do |f|
+  package f do
+    action :install
+  end
+end
+
+#
+# Install Casks
+#
+homebrew_tap "phinze/cask"
+
+node["homebrew"]["casks"].each do |c|
+  homebrew_cask c do
+    action :cask
+  end
+end
