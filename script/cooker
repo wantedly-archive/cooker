@@ -178,10 +178,10 @@ if File.executable?('/usr/bin/berks') && File.exists?("#{ROOT_DIR}/.chef/Berksfi
 
   success "Installing chef cookbooks..."
   separator "install output"
-  system("/usr/bin/berks install --quiet")
-  system("/usr/bin/berks update --quiet")
+  system("/usr/bin/berks install")
+  system("/usr/bin/berks update")
   system("rm -r #{ROOT_DIR}/.chef/vendor/cookbooks")
-  system("/usr/bin/berks vendor #{ROOT_DIR}/.chef/vendor/cookbooks --quiet")
+  system("/usr/bin/berks vendor #{ROOT_DIR}/.chef/vendor/cookbooks")
   exit 1 if $? != 0
   puts ""
 
