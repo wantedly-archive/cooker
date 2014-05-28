@@ -4,7 +4,6 @@ base_path = File.expand_path("..", __FILE__)
 cookbook_path []
 cookbook_path << File.join(base_path, "vendor/cookbooks")
 cookbook_path << File.join(base_path, "cookbooks")
-cookbook_path << File.join(base_path, "cookbooks")
 cookbook_path << File.join(repo_path, "cookbooks")
 
 role_path                 []

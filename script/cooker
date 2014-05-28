@@ -171,18 +171,6 @@ else
 end
 
 #
-# Check for Berkshelf version
-#
-if `/opt/chef/embedded/bin/berks version`.split('.').first == '3'
-  success "Your Berkshelf version is correct."
-else
-  warn "You need to upgrade Berkshelf."
-  success "Upgrade berkshelf..."
-  separator "gem's output"
-  system("sudo /opt/chef/embedded/bin/gem update berkshelf --no-ri --no-rdoc")
-end
-
-#
 # Run Berkshelf
 #
 if File.executable?('/usr/bin/berks') && File.exists?("#{ROOT_DIR}/.chef/Berksfile")
@@ -190,12 +178,10 @@ if File.executable?('/usr/bin/berks') && File.exists?("#{ROOT_DIR}/.chef/Berksfi
 
   success "Installing chef cookbooks..."
   separator "install output"
-  # FIXME (spesnova): Separating cookbooks directory for cooker is better,
-  #                   but `vendor` subcommand gets "destination already exists"
-  #system("/usr/bin/berks vendor #{ROOT_DIR}/.chef/vendor/cookbooks")
-  system("/usr/bin/berks install")
-  system("/usr/bin/berks update")
-  system("/usr/bin/berks install")
+  system("/usr/bin/berks install --quiet")
+  system("/usr/bin/berks update --quiet")
+  system("rm -r #{ROOT_DIR}/.chef/vendor/cookbooks")
+  system("/usr/bin/berks vendor #{ROOT_DIR}/.chef/vendor/cookbooks --quiet")
   exit 1 if $? != 0
   puts ""
 

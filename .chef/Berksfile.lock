@@ -1,41 +1,7 @@
-<<<<<<< HEAD
-{
-  "sources": {
-    "homebrew": {
-      "locked_version": "1.5.5",
-      "git": "https://github.com/wantedly/homebrew-cookbook.git",
-      "ref": "e5cc3c1fe94fac9e3c241d8b6cafdd6aa29a7c82"
-    },
-    "ruby_build": {
-      "locked_version": "0.8.1",
-      "git": "https://github.com/fnichol/chef-ruby_build.git",
-      "ref": "4d3361995a6953076951693eff1b326ab499fe1e"
-    },
-    "rbenv": {
-      "locked_version": "0.7.3",
-      "git": "https://github.com/fnichol/chef-rbenv.git",
-      "ref": "0a3018634bafe58ad21c6ee271af015220e444b9"
-    },
-    "os_x": {
-      "path": "./cookbooks/os_x"
-    },
-    "projects": {
-      "path": "../cookbooks/projects"
-    },
-    "people": {
-      "path": "../cookbooks/people"
-    },
-    "java": {
-      "locked_version": "1.22.0"
-    }
-  }
-}
-=======
 DEPENDENCIES
   homebrew
-    git: https://github.com/wantedly/homebrew-cookbook.git
-    revision: e5cc3c1fe94fac9e3c241d8b6cafdd6aa29a7c82
-    ref: e5cc3c1
+    git: https://github.com/opscode-cookbooks/homebrew.git
+    revision: 1e7becce6656c076e96c55c36867ef4cc4a5462a
   os_x
     path: cookbooks/os_x
   people
@@ -50,7 +16,7 @@ DEPENDENCIES
     revision: 4d3361995a6953076951693eff1b326ab499fe1e
 
 GRAPH
-  homebrew (1.5.5)
+  homebrew (1.6.5)
   java (1.22.0)
   os_x (0.1.0)
     rbenv (>= 0.0.0)
@@ -62,4 +28,3 @@ GRAPH
     java (> 1.4.0)
     ruby_build (>= 0.0.0)
   ruby_build (0.8.1)
->>>>>>> spesnova/use-system-ruby-for-chef
