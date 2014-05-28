@@ -34,6 +34,13 @@ override_attributes({
       "readline"
     ],
     "casks" => [
+      # NOTE (spesnova): templorary excluding for business team
+      #"google-chrome",
+      #"hipchat",
+      #"skitch",
+      #"evernote",
+      #"dropbox",
+      #"dropbox-encore",
     ]
   },
   "rbenv"    => {
