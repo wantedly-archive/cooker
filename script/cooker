@@ -119,10 +119,12 @@ else
   end
 end
 
+ARCHFLAGS_OPTION= 'ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future'
+
 #
 # Check for Chef
 #
-if File.exists?('/opt/chef') && File.executable?('/opt/chef/bin/chef-solo')
+if File.executable?('/usr/bin/chef-solo')
   success "Chef found."
 else
   warn "You need to install Chef."
@@ -134,7 +136,8 @@ else
     # TODO (spesnova):
     #   Use '#curl -L https://www.opscode.com/chef/install.sh | sudo bash'
     #   if original script supports os x 10.9
-    system("curl -L https://gist.github.com/ringohub/7660676/raw/bc25c3274d55a799f11e4aa012bf3e809a7cf285/install.sh | sudo bash")
+    #system("curl -L https://gist.github.com/ringohub/7660676/raw/bc25c3274d55a799f11e4aa012bf3e809a7cf285/install.sh | sudo bash")
+    system("sudo #{ARCHFLAGS_OPTION} /usr/bin/gem install chef --no-ri --no-rdoc")
     exit 1 if $? != 0
     puts ""
   else
@@ -146,13 +149,25 @@ end
 #
 # Check for Berkshelf
 #
-if File.executable?('/opt/chef/embedded/bin/berks')
+if File.executable?('/usr/bin/berks')
   success "Berkshelf found."
 else
   warn "You need to install Berkshelf."
   success "Installing berkshelf..."
   separator "gem's output"
-  system("sudo /opt/chef/embedded/bin/gem install berkshelf --no-ri --no-rdoc")
+  system("sudo #{ARCHFLAGS_OPTION} /usr/bin/gem install berkshelf --no-ri --no-rdoc")
+end
+
+#
+# Check for Berkshelf version
+#
+if `/usr/bin/berks version`.split('.').first == '3'
+  success "Your Berkshelf version is correct."
+else
+  warn "You need to upgrade Berkshelf."
+  success "Upgrade berkshelf..."
+  separator "gem's output"
+  system("sudo #{ARCHFLAGS_OPTION} /usr/bin/gem update berkshelf --no-ri --no-rdoc")
 end
 
 #
@@ -170,14 +185,17 @@ end
 #
 # Run Berkshelf
 #
-if File.executable?('/opt/chef/embedded/bin/berks') && File.exists?("#{ROOT_DIR}/.chef/Berksfile")
+if File.executable?('/usr/bin/berks') && File.exists?("#{ROOT_DIR}/.chef/Berksfile")
   Dir.chdir "#{ROOT_DIR}/.chef"
 
   success "Installing chef cookbooks..."
   separator "install output"
-  system("/opt/chef/embedded/bin/berks vendor #{ROOT_DIR}/.chef/vendor/cookbooks")
-  system("/opt/chef/embedded/bin/berks update")
-  system("/opt/chef/embedded/bin/berks vendor #{ROOT_DIR}/.chef/vendor/cookbooks")
+  # FIXME (spesnova): Separating cookbooks directory for cooker is better,
+  #                   but `vendor` subcommand gets "destination already exists"
+  #system("/usr/bin/berks vendor #{ROOT_DIR}/.chef/vendor/cookbooks")
+  system("/usr/bin/berks install")
+  system("/usr/bin/berks update")
+  system("/usr/bin/berks install")
   exit 1 if $? != 0
   puts ""
 

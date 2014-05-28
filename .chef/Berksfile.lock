@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "sources": {
     "homebrew": {
@@ -29,3 +30,36 @@
     }
   }
 }
+=======
+DEPENDENCIES
+  homebrew
+    git: https://github.com/wantedly/homebrew-cookbook.git
+    revision: e5cc3c1fe94fac9e3c241d8b6cafdd6aa29a7c82
+    ref: e5cc3c1
+  os_x
+    path: cookbooks/os_x
+  people
+    path: ../cookbooks/people
+  projects
+    path: ../cookbooks/projects
+  rbenv
+    git: https://github.com/fnichol/chef-rbenv.git
+    revision: 0a3018634bafe58ad21c6ee271af015220e444b9
+  ruby_build
+    git: https://github.com/fnichol/chef-ruby_build.git
+    revision: 4d3361995a6953076951693eff1b326ab499fe1e
+
+GRAPH
+  homebrew (1.5.5)
+  java (1.22.0)
+  os_x (0.1.0)
+    rbenv (>= 0.0.0)
+    ruby_build (>= 0.0.0)
+  people (0.1.0)
+  projects (0.1.0)
+    ruby_build (>= 0.0.0)
+  rbenv (0.7.3)
+    java (> 1.4.0)
+    ruby_build (>= 0.0.0)
+  ruby_build (0.8.1)
+>>>>>>> spesnova/use-system-ruby-for-chef

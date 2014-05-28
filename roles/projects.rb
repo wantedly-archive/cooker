@@ -34,22 +34,16 @@ override_attributes({
       "readline"
     ],
     "casks" => [
-      "google-chrome",
-      "hipchat",
-      "skitch",
-      "evernote",
-      "dropbox",
-      "dropbox-encore"
     ]
   },
   "rbenv"    => {
     "user_installs" => [
       {
         "user"   => ENV['HOME'].sub("\/Users\/", ""),
-        "rubies" => ["2.1.1"],
-        "global" => "2.1.1",
+        "rubies" => ["2.1.2"],
+        "global" => "2.1.2",
         "gems"   => {
-          "2.1.1" => [
+          "2.1.2" => [
             { "name" => "bundler" },
             { "name" => "rails" },
             { "name" => "chef" },
