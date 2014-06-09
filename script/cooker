@@ -191,6 +191,12 @@ if File.executable?('/usr/bin/berks') && File.exists?("#{ROOT_DIR}/.chef/Berksfi
 end
 
 #
+# Change owner of /usr/local
+#
+success "Changing owner of /usr/local..."
+system("sudo chown -R `whoami`:staff /usr/local")
+
+#
 # Run Chef
 #
 Dir.chdir "#{ROOT_DIR}/.chef"
