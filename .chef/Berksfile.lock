@@ -1,7 +1,7 @@
 DEPENDENCIES
   homebrew
     git: https://github.com/opscode-cookbooks/homebrew.git
-    revision: 1e7becce6656c076e96c55c36867ef4cc4a5462a
+    revision: 12dd94d75d02a11c96a7f68b561490eadab7a5b7
   os_x
     path: cookbooks/os_x
   people
@@ -16,7 +16,7 @@ DEPENDENCIES
     revision: 4d3361995a6953076951693eff1b326ab499fe1e
 
 GRAPH
-  homebrew (1.6.5)
+  homebrew (1.6.7)
   java (1.22.0)
   os_x (0.1.0)
     rbenv (>= 0.0.0)
