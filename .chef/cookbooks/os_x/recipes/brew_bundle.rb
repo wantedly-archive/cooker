@@ -28,10 +28,12 @@ end
 #
 # Install Casks
 #
-homebrew_tap 'caskroom/cask'
+if node["homebrew"]["enable_cask"]
+  homebrew_tap 'caskroom/cask'
 
-node["homebrew"]["casks"].each do |c|
-  homebrew_cask c do
-    action :cask
+  node["homebrew"]["casks"].each do |c|
+    homebrew_cask c do
+      action :cask
+    end
   end
 end

@@ -15,6 +15,7 @@ override_attributes({
     "upgrade" => "sync"
   },
   "homebrew" => {
+    "enable_cask" => false,
     "formulas" => [
       #
       # basic formulas
@@ -34,13 +35,13 @@ override_attributes({
       "readline"
     ],
     "casks" => [
-      # NOTE (spesnova): templorary excluding for business team
-      #"google-chrome",
-      #"hipchat",
-      #"skitch",
-      #"evernote",
-      #"dropbox",
-      #"dropbox-encore",
+      "google-chrome",
+      "hipchat",
+      "skitch",
+      "evernote",
+      "dropbox",
+      "dropbox-encore",
+      "caffeine",
     ]
   },
   "rbenv"    => {
