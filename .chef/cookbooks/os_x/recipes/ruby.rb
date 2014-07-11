@@ -80,5 +80,5 @@ execute "Set #{node['rbenv']['global']} to global ruby version" do
   user node["rbenv"]["user"]
   group node["rbenv"]["group"]
   environment({ "RBENV_ROOT" => node["rbenv"]["root"] })
-  not_if { ::File.open("/Users/seigo/.rbenv/version").read.chomp == node["rbenv"]["global"] }
+  not_if { ::File.open("#{node['rbenv']['root']}/version").read.chomp == node["rbenv"]["global"] }
 end
