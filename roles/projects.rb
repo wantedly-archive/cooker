@@ -3,17 +3,9 @@ description "Run list for each project."
 run_list(
   "recipe[homebrew]",          # Don't remove this
   "recipe[os_x::brew_bundle]", # Don't remove this
-  "recipe[ruby_build]",
   "recipe[os_x::ruby]"
 )
 override_attributes({
-  "rbenv" => {
-    "git_ref" => "master",
-    "upgrade" => "sync"
-  },
-  "ruby_build" => {
-    "upgrade" => "sync"
-  },
   "homebrew" => {
     "enable_cask" => false,
     "formulas" => [
@@ -44,21 +36,19 @@ override_attributes({
       "caffeine",
     ]
   },
-  "rbenv"    => {
-    "user_installs" => [
-      {
-        "user"   => ENV['HOME'].sub("\/Users\/", ""),
-        "rubies" => ["2.1.2"],
-        "global" => "2.1.2",
-        "gems"   => {
-          "2.1.2" => [
-            { "name" => "bundler" },
-            { "name" => "rails" },
-            { "name" => "chef" },
-            { "name" => "berkshelf" },
-          ]
-        }
-      }
-    ]
+  "rbenv" => {
+    "user"   => ENV['HOME'].sub("\/Users\/", ""),
+    "group"  => "staff",
+    "root"   => "#{ENV['HOME']}/.rbenv",
+    "rubies" => ["2.1.2", "2.2.0-dev"],
+    "global" => "2.1.2",
+    "gems"   => {
+      "2.1.2" => [
+        { "name" => "bundler" },
+        { "name" => "rails" },
+        { "name" => "chef" },
+        { "name" => "berkshelf" },
+      ]
+    }
   }
 })

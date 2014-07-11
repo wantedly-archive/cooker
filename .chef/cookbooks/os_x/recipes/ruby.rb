@@ -16,10 +16,31 @@
 # limitations under the License.
 #
 
-include_recipe "rbenv::user"
+#
+# Install rbenv, ruby-build via homebrew
+#
+package "rbenv"
+package "ruby-build"
+package "rbenv-gem-rehash"
 
-directory "#{ENV['HOME']}/.rbenv" do
+#
+# Create rbenv root
+#
+directory node["rbenv"]["root"] do
   owner node["current_user"]
   group "staff"
   recursive true
+end
+
+#
+# Install Rubies
+#
+node["rbenv"]["rubies"].each do |version|
+  execute "Install ruby #{version}" do
+    user node["rbenv"]["user"]
+    group node["rbenv"]["group"]
+    environment({ "RBENV_ROOT" => node["rbenv"]["root"] })
+    command "/usr/local/bin/rbenv install #{version}"
+    not_if { ::File.exists?("#{node['rbenv']['root']}/versions/#{version}") }
+  end
 end
