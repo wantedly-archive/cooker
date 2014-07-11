@@ -28,7 +28,7 @@ end
 #
 # Install Casks
 #
-homebrew_tap "phinze/cask"
+homebrew_tap 'caskroom/cask'
 
 node["homebrew"]["casks"].each do |c|
   homebrew_cask c do
