@@ -3,7 +3,8 @@ description "Run list for each project."
 run_list(
   "recipe[homebrew]",          # Don't remove this
   "recipe[os_x::brew_bundle]", # Don't remove this
-  "recipe[os_x::ruby]"
+  "recipe[os_x::ruby]",
+  "recipe[projects::wantedly]"
 )
 override_attributes({
   "homebrew" => {
@@ -34,6 +35,7 @@ override_attributes({
       "dropbox",
       "dropbox-encore",
       "caffeine",
+      "postgres",
     ]
   },
   "rbenv" => {
