@@ -40,7 +40,7 @@ override_attributes({
     "user"   => ENV['HOME'].sub("\/Users\/", ""),
     "group"  => "staff",
     "root"   => "#{ENV['HOME']}/.rbenv",
-    "rubies" => ["2.1.2", "2.2.0-dev"],
+    "rubies" => ["2.1.2"],
     "global" => "2.1.2",
     "gems"   => {
       "2.1.2" => [
