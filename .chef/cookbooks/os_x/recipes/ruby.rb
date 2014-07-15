@@ -75,6 +75,12 @@ end
 #
 # Set Global Version
 #
+file "#{node['rbenv']['root']}/version" do
+  user node["rbenv"]["user"]
+  group node["rbenv"]["group"]
+  content node['rbenv']['global']
+end
+
 execute "Set #{node['rbenv']['global']} to global ruby version" do
   command "/usr/local/bin/rbenv global #{node['rbenv']['global']}"
   user node["rbenv"]["user"]
