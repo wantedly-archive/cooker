@@ -30,6 +30,7 @@ end
 #
 if node["homebrew"]["enable_cask"]
   homebrew_tap 'caskroom/cask'
+  package "brew-cask"
 
   node["homebrew"]["casks"].each do |c|
     homebrew_cask c do
