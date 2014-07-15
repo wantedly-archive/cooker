@@ -32,6 +32,11 @@ if node["homebrew"]["enable_cask"]
   homebrew_tap 'caskroom/cask'
   package "brew-cask"
 
+  directory "/opt/homebrew-cask" do
+    user node["rbenv"]["user"]
+    group node["rbenv"]["user"]
+  end
+
   node["homebrew"]["casks"].each do |c|
     homebrew_cask c do
       action :cask
