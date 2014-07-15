@@ -37,6 +37,11 @@ if node["homebrew"]["enable_cask"]
     group node["rbenv"]["user"]
   end
 
+  directory "/opt/homebrew-cask/Caskroom" do
+    user node["rbenv"]["user"]
+    group node["rbenv"]["user"]
+  end
+
   node["homebrew"]["casks"].each do |c|
     homebrew_cask c do
       action :cask
