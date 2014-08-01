@@ -29,7 +29,7 @@ override_attributes({
     ],
     "casks" => [
       "google-chrome",
-      "hipchat",
+      "slack",
       "skitch",
       "evernote",
       "dropbox",
