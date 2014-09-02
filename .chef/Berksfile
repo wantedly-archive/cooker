@@ -1,4 +1,4 @@
-source "http://api.berkshelf.com/"
+source "https://api.berkshelf.com/"
 
 cookbook "homebrew",
   :git => "https://github.com/opscode-cookbooks/homebrew.git"
