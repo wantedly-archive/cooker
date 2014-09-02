@@ -30,7 +30,7 @@ end
 #
 if node["homebrew"]["enable_cask"]
   homebrew_tap 'caskroom/cask'
-  package "brew-cask"
+  package "caskroom/cask/brew-cask"
 
   directory "/opt/homebrew-cask" do
     user node["rbenv"]["user"]
