@@ -1,7 +1,7 @@
 DEPENDENCIES
   homebrew
     git: https://github.com/opscode-cookbooks/homebrew.git
-    revision: cc9dd4221d1ddc9d7003fde9ab86adf4ce55b3a3
+    revision: c4328dd59ded2204098ee8469917d9d59995dfe7
   os_x
     path: cookbooks/os_x
   people
@@ -10,8 +10,8 @@ DEPENDENCIES
     path: ../cookbooks/projects
 
 GRAPH
-  apt (2.4.0)
-  build-essential (2.0.4)
+  apt (2.5.3)
+  build-essential (2.0.6)
   chef_handler (1.1.6)
   dmg (2.2.0)
   git (4.0.2)
@@ -21,7 +21,7 @@ GRAPH
     windows (>= 0.0.0)
     yum (~> 3.0)
     yum-epel (>= 0.0.0)
-  homebrew (1.7.3)
+  homebrew (1.9.0)
   ohai (2.0.1)
   os_x (0.1.0)
     rbenv (>= 0.0.0)
@@ -39,8 +39,8 @@ GRAPH
     build-essential (>= 0.0.0)
     yum (~> 3.0)
     yum-epel (>= 0.0.0)
-  windows (1.32.0)
+  windows (1.34.2)
     chef_handler (>= 0.0.0)
-  yum (3.2.2)
-  yum-epel (0.3.6)
+  yum (3.2.4)
+  yum-epel (0.4.0)
     yum (~> 3.0)
