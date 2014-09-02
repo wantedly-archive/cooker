@@ -1,0 +1,2 @@
+which rbenv > /dev/null 2>&1
+test $? -eq 0 && export PATH="$HOME/.rbenv/bin:$PATH" && eval "$(rbenv init -)"
