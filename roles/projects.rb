@@ -30,6 +30,7 @@ override_attributes({
     "casks" => [
       "google-chrome",
       "google-japanese-ime",
+      "coteditor",
       "slack",
       "skitch",
       "evernote",
