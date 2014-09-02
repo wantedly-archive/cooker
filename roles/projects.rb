@@ -8,7 +8,7 @@ run_list(
 )
 override_attributes({
   "homebrew" => {
-    "enable_cask" => false,
+    "enable_cask" => true,
     "formulas" => [
       #
       # basic formulas
