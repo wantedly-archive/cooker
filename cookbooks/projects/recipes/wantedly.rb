@@ -16,3 +16,12 @@ ruby_block "Set PATH for Postgres.app" do
   action :create
   only_if { first_line.chomp != insert_line.chomp }
 end
+
+%w{ bash_profile zshenv }.each do |f|
+  cookbook_file "#{ENV['HOME']}/.#{f}" do
+    source f
+    owner node["rbenv"]["user"]
+    group "staff"
+    not_if { File.exists?("#{ENV['HOME']}/.#{f}") }
+  end
+end
