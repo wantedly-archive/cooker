@@ -25,3 +25,10 @@ end
     not_if { File.exists?("#{ENV['HOME']}/.#{f}") }
   end
 end
+
+cookbook_file "#{ENV['HOME']}/.gitconfig" do
+  source "gitconfig"
+  owner node["rbenv"]["user"]
+  group "staff"
+  not_if { File.exists?("#{ENV['HOME']}/.gitconfig") }
+end
