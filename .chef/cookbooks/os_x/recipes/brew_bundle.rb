@@ -32,6 +32,11 @@ if node["homebrew"]["enable_cask"]
   homebrew_tap 'caskroom/cask'
   package "caskroom/cask/brew-cask"
 
+  directory "/opt" do
+    user "root"
+    group "wheel"
+  end
+
   directory "/opt/homebrew-cask" do
     user node["rbenv"]["user"]
     group node["rbenv"]["user"]
