@@ -1,3 +1,5 @@
 export PATH=/usr/local/bin:$PATH
 which rbenv > /dev/null 2>&1
 test $? -eq 0 && eval "$(rbenv init -)"
+
+curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/plugins/rails/rails.plugin.zsh | sed -e "/compdef/d" | sh
