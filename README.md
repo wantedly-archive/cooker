@@ -1,4 +1,4 @@
-# Cooker
+# Cooker [Deprecated]
 Bootstrap Your Mac.
 
 This is just a chef-solo wrapper to configure laptop(os x only!).
